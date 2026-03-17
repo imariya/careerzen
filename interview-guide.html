@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гайд по подготовке к интервью — Продуктовый дизайн</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Geologica:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1814;
+    --ink2: #3d3a34;
+    --ink3: #7a7568;
+    --paper: #f5f2ec;
+    --paper2: #ede9e0;
+    --paper3: #e4dfd3;
+    --accent: #c8603a;
+    --accent2: #8b3a20;
+    --gold: #b89a5a;
+    --green: #3a6645;
+    --red: #8b2e2e;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Geologica', sans-serif;
+    --r: 6px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,96,58,.18);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,96,58,.1);
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    max-width: 640px;
+    margin-bottom: 18px;
+  }
+  header p {
+    font-size: 15px;
+    color: rgba(245,242,236,.65);
+    max-width: 520px;
+  }
+  .header-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-meta span {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: rgba(245,242,236,.45);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .header-meta span::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,.07);
+    padding: 0 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .05em;
+    color: rgba(245,242,236,.45);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .nav-btn:hover { color: rgba(245,242,236,.8); }
+  .nav-btn.active { color: var(--paper); border-bottom-color: var(--accent); }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--paper3);
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: #fff;
+    border: 1px solid var(--paper3);
+    border-radius: var(--r);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .card-body {
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.7;
+  }
+  .card-body b { font-weight: 500; color: var(--ink); }
+  .card.accent-left { border-left: 3px solid var(--accent); }
+  .card.full-bg { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .card.full-bg .card-title { color: var(--paper); }
+  .card.full-bg .card-body { color: rgba(245,242,236,.7); }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  @media (max-width: 600px) { .row { grid-template-columns: 1fr; } }
+  .row .card { margin-bottom: 0; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--paper3);
+    position: relative;
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+  .step-desc { font-size: 14px; color: var(--ink2); line-height: 1.65; }
+
+  /* ── TAGS / PILLS ── */
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin: 2px 3px 2px 0;
+  }
+  .pill-ink    { background: var(--ink); color: var(--paper); }
+  .pill-accent { background: #fceee8; color: var(--accent2); }
+  .pill-green  { background: #e8f3eb; color: var(--green); }
+  .pill-gold   { background: #f5eddb; color: #7a6030; }
+  .pill-red    { background: #f5e8e8; color: var(--red); }
+
+  /* ── Q BLOCKS ── */
+  .q-block {
+    padding: 20px 24px;
+    background: #fff;
+    border: 1px solid var(--paper3);
+    border-radius: var(--r);
+    margin-bottom: 14px;
+    border-left: 3px solid var(--paper3);
+    transition: border-color .2s;
+  }
+  .q-block:hover { border-left-color: var(--accent); }
+  .q-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    letter-spacing: .04em;
+  }
+  .badge-hard  { background: #fce8e8; color: var(--red); }
+  .badge-med   { background: #f5eddb; color: #7a6030; }
+  .badge-easy  { background: #e8f3eb; color: var(--green); }
+  .q-text { font-weight: 500; font-size: 15px; margin-bottom: 8px; font-family: var(--serif); }
+  .q-hint { font-size: 13px; color: var(--ink3); line-height: 1.65; }
+  .q-hint b { font-weight: 500; color: var(--ink2); }
+
+  /* ── CHECKLIST ── */
+  .check-group { margin-bottom: 32px; }
+  .check-group-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--paper3);
+  }
+  .check-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--paper2);
+    cursor: pointer;
+    transition: opacity .15s;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item.done { opacity: .45; }
+  .check-item.done .check-text { text-decoration: line-through; }
+  .check-box {
+    flex-shrink: 0;
+    width: 20px; height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid var(--paper3);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    transition: all .15s;
+    font-size: 12px;
+    color: transparent;
+  }
+  .check-item.done .check-box {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .check-text { font-size: 14px; color: var(--ink2); line-height: 1.55; }
+
+  /* ── MATCH ITEMS ── */
+  .match-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--paper2);
+    font-size: 14px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+  .match-item:last-child { border-bottom: none; }
+  .match-ico {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .ico-y { background: #e8f3eb; color: var(--green); }
+  .ico-n { background: #fce8e8; color: var(--red); }
+  .ico-m { background: #f5eddb; color: #7a6030; }
+
+  /* ── SALARY HIGHLIGHT ── */
+  .salary-quote {
+    background: var(--paper2);
+    border-left: 3px solid var(--gold);
+    padding: 16px 20px;
+    border-radius: 0 var(--r) var(--r) 0;
+    font-size: 14px;
+    color: var(--ink2);
+    margin: 14px 0;
+    font-style: italic;
+    line-height: 1.65;
+  }
+
+  /* ── WARNINGS LIST ── */
+  .warn-list { list-style: none; }
+  .warn-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: var(--ink2);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--paper2);
+    line-height: 1.55;
+  }
+  .warn-list li:last-child { border-bottom: none; }
+  .warn-list li::before {
+    content: '—';
+    color: var(--accent);
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  /* ── PROGRESS ── */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width .1s;
+    z-index: 999;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 12px;
+    color: var(--ink3);
+    border-top: 1px solid var(--paper3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section.active { animation: fadeUp .25s ease; }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header>
+  <div class="header-eyebrow">Карьерный гайд · Продуктовый дизайн</div>
+  <h1>Подготовка к&nbsp;интервью UX/Product Designer</h1>
+  <p>Структурированный гайд: от самопрезентации до переговоров об оффере. Чеклист, вопросы, фреймворки для кейс-интервью.</p>
+  <div class="header-meta">
+    <span>6 блоков</span>
+    <span>Интерактивный чеклист</span>
+    <span>Middle · Senior</span>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="show('self', this)">Самопрезентация</button>
+  <button class="nav-btn" onclick="show('portfolio', this)">Портфолио</button>
+  <button class="nav-btn" onclick="show('questions', this)">Вопросы</button>
+  <button class="nav-btn" onclick="show('cases', this)">Кейс-интервью</button>
+  <button class="nav-btn" onclick="show('salary', this)">Зарплата</button>
+  <button class="nav-btn" onclick="show('checklist', this)">Чеклист</button>
+</nav>
+
+<main>
+
+  <!-- ── SELF ── -->
+  <div id="self" class="section active">
+    <div class="section-header">
+      <div class="section-eyebrow">Блок 01</div>
+      <div class="section-title">Как рассказать о себе за 2–3 минуты</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Структура «якорь → опыт → ценность»</div>
+      <div class="card-body">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">Якорь — один сильный тезис о себе</div>
+              <div class="step-desc">Не «я дизайнер с 5 годами опыта», а «я проектирую сложные системные интерфейсы — CRM, мобильные приложения — и довожу их до измеримого результата».</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">Траектория — быстро, без лишнего</div>
+              <div class="step-desc">Откуда пришли в дизайн, как росли: Junior → Middle → Senior. Ключевые места работы одним предложением каждое. Не перечисляйте всё — только то, что релевантно.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">Главный кейс — один, с деталями</div>
+              <div class="step-desc">Выберите проект, где вы влияли на результат. Контекст → проблема → ваше решение → метрика. 40–50 секунд на него.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">Мотивация — зачем сюда</div>
+              <div class="step-desc">Конкретно: что в этой компании/продукте вам интересно. Без «хочу развиваться» — это ничего не говорит.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="card-title">Про уровень</div>
+        <div class="card-body">Middle/Senior — не про годы, а про самостоятельность. Подчеркните: работали без арт-директора, принимали решения сами, координировали разработчиков и стейкхолдеров.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Про метрики — обязательно</div>
+        <div class="card-body">Работодатели в продуктовом дизайне ждут цифры. «+79% трафика», «экономия 120 ч/мес», «MVP за 3 месяца» — это убеждает сильнее, чем описание процесса.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Частые ошибки</div>
+      <div class="card-body">
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>Хронология ради хронологии.</b> Не нужно рассказывать каждое место работы — только релевантное.</div></div>
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>«Я командный игрок».</b> Клише без доказательства. Замените конкретным примером взаимодействия с командой.</div></div>
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>Извинения за опыт.</b> «У меня нет опыта в X, но...» — начинать с дефицита плохо. Сначала то, что есть, потом готовность изучить.</div></div>
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>Монолог без паузы.</b> Остановитесь после блока 3 и дайте интервьюеру задать вопрос — это показывает эмоциональный интеллект.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PORTFOLIO ── -->
+  <div id="portfolio" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Блок 02</div>
+      <div class="section-title">Как подготовить и презентовать портфолио</div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="card-title">Структура кейса</div>
+        <div class="card-body">
+          <b>Контекст</b> — продукт, аудитория, ваша роль<br>
+          <b>Проблема</b> — что было не так и откуда это известно<br>
+          <b>Процесс</b> — исследование, гипотезы, итерации<br>
+          <b>Решение</b> — финальный дизайн с обоснованием<br>
+          <b>Результат</b> — метрики или обратная связь
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Сколько кейсов</div>
+        <div class="card-body">3–5 глубоких кейса лучше, чем 12 поверхностных. Для senior-позиций важна глубина рассуждений.<br><br>Первый кейс — самый сильный. Открывают не тот, который нравится вам, а тот, который работает как аргумент.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Что интервьюер ищет в портфолио</div>
+      <div class="card-body">
+        <div style="margin-bottom: 14px;">
+          <span class="pill pill-ink">Ход мысли</span>
+          <span class="pill pill-ink">Работа с данными</span>
+          <span class="pill pill-ink">Коллаборация</span>
+          <span class="pill pill-ink">Итеративность</span>
+          <span class="pill pill-accent">Влияние на продукт</span>
+          <span class="pill pill-accent">Самостоятельность</span>
+        </div>
+        Интервьюер не смотрит на «красоту» — он смотрит, умеете ли вы решать проблемы. Покажите черновики, отброшенные варианты, объясните, почему выбрали именно это решение.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Частые ошибки</div>
+      <div class="card-body">
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>Только финальные экраны</b> без объяснения процесса — непонятно, ваша ли это работа и почему именно такое решение.</div></div>
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>Нет NDA-стратегии</b> — подготовьте, что скажете про проекты под NDA: покажите процесс без конкретных данных или попросите разрешение заранее.</div></div>
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>Перегруженный Behance</b> как единственная ссылка — у вас нет контроля над тем, как это смотрится. Figma-презентация или PDF надёжнее.</div></div>
+        <div class="match-item"><div class="match-ico ico-n">✕</div><div><b>«Я сделала дизайн» без роли</b> — всегда уточняйте, что именно было вашим: исследование, архитектура, визуал, вся система?</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── QUESTIONS ── -->
+  <div id="questions" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Блок 03</div>
+      <div class="section-title">Вопросы, которые задают чаще всего</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-hard">Сложный</div>
+      <div class="q-text">«Расскажите о провале или ошибке в проекте»</div>
+      <div class="q-hint"><b>Зачем спрашивают:</b> проверяют рефлексию и зрелость.<br><b>Как отвечать:</b> реальный кейс → что пошло не так → что вы поняли → что изменили после. Не оправдывайтесь и не сваливайте на команду. Вывод важнее самой ошибки.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-hard">Сложный</div>
+      <div class="q-text">«Как вы отстаиваете своё решение перед стейкхолдерами?»</div>
+      <div class="q-hint"><b>Зачем спрашивают:</b> ищут дизайнера, а не исполнителя.<br><b>Как отвечать:</b> конкретный пример, где было давление. Покажите, что аргументируете через данные и цели продукта, а не через «мне так нравится». Упомяните случай, когда уступили — и почему это было правильно.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-med">Средний</div>
+      <div class="q-text">«Как вы работаете с пользовательскими исследованиями?»</div>
+      <div class="q-hint"><b>Зачем спрашивают:</b> хотят понять, насколько вы data-driven.<br><b>Как отвечать:</b> назовите конкретные методы (интервью, usability-тест, аналитика). Покажите, как это влияло на решения — не просто «мы провели интервью», а «интервью показало X → мы изменили Y».</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-med">Средний</div>
+      <div class="q-text">«Как вы приоритизируете задачи, когда их много?»</div>
+      <div class="q-hint"><b>Зачем спрашивают:</b> проверяют самоорганизацию и понимание бизнес-логики.<br><b>Как отвечать:</b> упомяните конкретный подход (ICE, MoSCoW, договорённости с PM). Покажите, что умеете говорить «нет» или «не сейчас» и объяснять почему.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-med">Средний</div>
+      <div class="q-text">«Как вы работаете с дизайн-системой?»</div>
+      <div class="q-hint"><b>Зачем спрашивают:</b> хотят знать, умеете ли вы строить систему или только рисовать.<br><b>Как отвечать:</b> расскажите про конкретную систему — компоненты, варианты, токены, документацию. Упомяните, как онбордили других дизайнеров или договаривались с разработчиками о реализации.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-easy">Базовый</div>
+      <div class="q-text">«Почему вы хотите уйти с текущего места?»</div>
+      <div class="q-hint"><b>Как отвечать:</b> говорите про «к чему идёте», не про «от чего бежите». Никогда не критикуйте текущего работодателя. Фокус на новых задачах, масштабе, домене.</div>
+    </div>
+
+    <div class="q-block">
+      <div class="q-badge badge-easy">Базовый</div>
+      <div class="q-text">«Где вы видите себя через 2–3 года?»</div>
+      <div class="q-hint"><b>Как отвечать:</b> не «хочу стать арт-директором» как мантра. Реальный вектор: углубление в продуктовую стратегию / рост в lead-дизайнера / экспертиза в домене. Свяжите с тем, что может дать эта компания.</div>
+    </div>
+  </div>
+
+  <!-- ── CASES ── -->
+  <div id="cases" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Блок 04</div>
+      <div class="section-title">Кейс-интервью и дизайн-задания</div>
+    </div>
+
+    <div class="card accent-left">
+      <div class="card-title">Что такое кейс-интервью в дизайне</div>
+      <div class="card-body">Вам дают задачу прямо на встрече: «Спроектируйте X» или «Как бы вы улучшили Y». Оценивают не результат, а <b>процесс рассуждений</b>. Правильных ответов нет — есть структурированные и хаотичные.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Универсальный фреймворк для разбора задачи</div>
+      <div class="card-body">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-title">Уточните задачу</div>
+              <div class="step-desc">«Для кого мы это делаем? Какая метрика успеха? Есть ли ограничения?» Вопросы показывают зрелость.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-title">Определите пользователя и его цель</div>
+              <div class="step-desc">Опишите сегмент, сценарий использования, боли. Не рисуйте интерфейс без этого шага.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-title">Сформулируйте проблему</div>
+              <div class="step-desc">«Пользователь хочет X, но сталкивается с Y» — одно предложение, которое направляет всё остальное.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-title">Предложите 2–3 направления решения</div>
+              <div class="step-desc">Не одно — покажите, что видите варианты. Выберите одно и объясните почему.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <div class="step-title">Набросайте концепцию</div>
+              <div class="step-desc">Схема на бумаге, вайрфрейм вслух. Необязательно красиво — важно, что логика видна.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <div class="step-title">Критикуйте своё решение сами</div>
+              <div class="step-desc">«Слабое место этого решения — X. Проверил бы через Y.» Это отличает senior от junior.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="card-title">Тестовое задание</div>
+        <div class="card-body">Уточните срок и объём — «сколько часов вы ожидаете?» Лучше глубоко проработать один поток, чем 10 экранов поверхностно. Добавьте страницу с обоснованием решений — это часто важнее макетов.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Живой разбор портфолио</div>
+        <div class="card-body">Вас попросят «рассказать об этом кейсе подробнее». Готовьтесь к вопросам: «Почему именно такое решение?», «Что бы сделали иначе?», «Как разработчики это восприняли?»</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SALARY ── -->
+  <div id="salary" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Блок 05</div>
+      <div class="section-title">Переговоры об условиях</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Когда и как называть цифру</div>
+      <div class="card-body">
+        В вопросе о зарплатных ожиданиях можно обозначить вилку: «от X до Y в зависимости от задач и формата». Обоснуйте через рынок и свои результаты:
+        <div class="salary-quote">«Смотрела текущие офферы в этом сегменте, мой опыт и кейсы соответствуют диапазону X–Y».</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card">
+        <div class="card-title">На что обратить внимание кроме оклада</div>
+        <div class="card-body">
+          <ul class="warn-list">
+            <li>Испытательный срок и его оплата</li>
+            <li>Бюджет на обучение и конференции</li>
+            <li>Как принимаются дизайн-решения</li>
+            <li>Есть ли дизайн-ревью и культура обратной связи</li>
+            <li>Roadmap продукта — есть ли что проектировать через год</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Тревожные сигналы на интервью</div>
+        <div class="card-body">
+          <ul class="warn-list">
+            <li>«Дизайнер у нас один» без контекста роли</li>
+            <li>Не могут объяснить метрики продукта</li>
+            <li>«Нарисуй — разработчики разберутся»</li>
+            <li>Нет ответа на «как вы принимаете продуктовые решения»</li>
+            <li>Торопят с ответом по офферу</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card accent-left">
+      <div class="card-title">Если оффер ниже ожидаемого</div>
+      <div class="card-body">Не соглашайтесь и не отказывайтесь сразу. Скажите: «Спасибо за оффер, мне нужно пара дней, чтобы всё обдумать». Потом либо контрпредложение с аргументами, либо осознанный отказ. Эмоциональные решения на месте — ошибка в обе стороны.</div>
+    </div>
+  </div>
+
+  <!-- ── CHECKLIST ── -->
+  <div id="checklist" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Блок 06</div>
+      <div class="section-title">Чеклист подготовки</div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">За неделю до</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Обновить портфолио: убрать слабые работы, добавить метрики</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Подготовить 3–5 глубоких кейса со структурой: контекст → процесс → результат</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Написать 2–3 версии самопрезентации под разные типы компаний</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Исследовать компанию: продукт, аудитория, конкуренты, последние новости</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Подготовить ответы на 7 базовых вопросов и отрепетировать вслух</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Сформулировать вилку зарплаты с обоснованием</div></div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">За день до</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Проверить, что ссылки на портфолио работают и открываются быстро</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Подготовить вопросы работодателю (минимум 3)</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Прочитать последние материалы о компании и продукте</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Открыть оффлайн-версию кейсов на случай проблем с интернетом</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Выспаться</div></div>
+    </div>
+
+    <div class="check-group">
+      <div class="check-group-title">В день интервью</div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Войти в звонок за 5 минут, проверить камеру и микрофон</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Держать портфолио открытым в отдельной вкладке</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Блокнот для заметок во время разговора</div></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">После интервью записать вопросы, которые поставили в тупик — для работы над ошибками</div></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Гайд по подготовке к интервью · Продуктовый дизайн · Middle / Senior
+</footer>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+}
+
+window.addEventListener('scroll', () => {
+  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
